@@ -391,6 +391,15 @@ namespace WinFormValidation {
             }
         }
 
+        private void FocusFirstError() {
+            if (ValidateForm != null) {
+                Errors error = Errors.First<Errors>();
+                Control Component = ValidateForm.Controls.Find(error.Rules.Component.Name, true)[0];
+                Console.WriteLine(Component.Name);
+                Component.Focus();
+            }
+        }
+
         #region
         /// <summary>
         /// Valida as Regras
@@ -403,15 +412,6 @@ namespace WinFormValidation {
             }
         }
         #endregion
-
-        private void FocusFirstError() {
-            if(ValidateForm != null) {
-                Errors error = Errors.First<Errors>();
-                Control Component = ValidateForm.Controls.Find(error.Rules.Component.Name, true)[0];
-                Console.WriteLine(Component.Name);
-                Component.Focus();
-            }
-        }
 
         #region
         /// <summary>
