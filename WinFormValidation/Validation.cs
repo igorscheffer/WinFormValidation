@@ -450,6 +450,22 @@ namespace WinFormValidation {
 
         #region
         /// <summary>
+        /// Limpa todos os dados do Formulario
+        /// </summary>
+        public void CleanAllComponents() {
+            foreach (Rules Rule in Rules) {
+                if (Rule.Component.GetType().Name == "ComboBox") {
+                    Rule.Component.SelectedValue = -1;
+                }
+                else {
+                    Rule.Component.Text = "";
+                }
+            }
+        }
+        #endregion
+
+        #region
+        /// <summary>
         /// Exibe um icone em todos Components não validos
         /// </summary>
         /// <param name="Width">Largura do Icone</param>
