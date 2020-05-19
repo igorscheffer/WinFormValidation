@@ -420,6 +420,10 @@ namespace WinFormValidation {
         /// <returns>true ou false</returns>
         public bool IsValid() {
             if (Errors.Count() == 0) {
+                if (ErrorProvider != null) {
+                    ErrorProvider.Clear();
+                }
+
                 return true;
             }
             else {
@@ -453,6 +457,10 @@ namespace WinFormValidation {
         /// Limpa todos os dados do Formulario
         /// </summary>
         public void CleanAllComponents() {
+            if (ErrorProvider != null) {
+                ErrorProvider.Clear();
+            }
+
             foreach (Rules Rule in Rules) {
                 if (Rule.Component.GetType().Name == "ComboBox") {
                     Rule.Component.SelectedValue = -1;
@@ -468,16 +476,26 @@ namespace WinFormValidation {
         /// <summary>
         /// Exibe um icone em todos Components não validos
         /// </summary>
+        /// <param name="newIcon">Icone que será usado para mostrar o erro</param>
         /// <param name="Width">Largura do Icone</param>
         /// <param name="Height">Altura do Icone</param>
         /// <param name="Padding">Preenchimento do Icone</param>
         /// <param name="RightToLeft">Exibir Icone do lado esquerdo do Component</param>
-        public void ErrorProviderShow(int Width = 20, int Height = 20, int Padding = 0, bool RightToLeft = false) {
+        public void ErrorProviderShow(dynamic newIcon = null, int Width = 20, int Height = 20, int Padding = 0, bool RightToLeft = false) {
             if (ErrorProvider != null) {
-                Bitmap ErrorIconBit = new Bitmap(Resources.error_1.ToBitmap(), Width, Height);
-                System.Drawing.Icon ErrorIcon = System.Drawing.Icon.FromHandle(ErrorIconBit.GetHicon());
+                Bitmap DefaultIcon = Resources.error_1.ToBitmap();
 
-                //Icon ErrorIcon = new Icon(Resources.error_1);
+                if (newIcon != null) {
+                    if (newIcon.GetType().Name == "Bitmap") {
+                        DefaultIcon = newIcon;
+                    }
+                    else if (newIcon.GetType().Name == "Icon") {
+                        DefaultIcon = newIcon.ToBitMap();
+                    }
+                }
+
+                Bitmap ErrorIconBit = new Bitmap(DefaultIcon, Width, Height);
+                System.Drawing.Icon ErrorIcon = System.Drawing.Icon.FromHandle(ErrorIconBit.GetHicon());
 
                 ErrorProvider.BlinkStyle = ErrorBlinkStyle.NeverBlink;
                 ErrorProvider.RightToLeft = RightToLeft;

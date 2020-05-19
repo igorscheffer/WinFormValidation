@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Exemple.Properties;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 using WinFormValidation;

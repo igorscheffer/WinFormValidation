@@ -9,7 +9,7 @@ namespace WinFormValidation {
         public string Rule { get; set; }
         public string Value {
             get {
-                if (Component.GetType().Name == "ComboBox") {
+                if (Component.GetType().Name == "ComboBox" || Component.GetType().Name == "GunaComboBox" || Component.GetType().Name == "Guna2ComboBox") {
                     if (Component.SelectedValue == null || Convert.ToString(Component.SelectedValue) == Convert.ToString(-1)) {
                         return string.Empty;
                     }
@@ -28,7 +28,7 @@ namespace WinFormValidation {
                         return Component.Text;
                     }
                 }
-                else if (Component.GetType().Name == "DateTimePicker") {
+                else if (Component.GetType().Name == "DateTimePicker" || Component.GetType().Name == "GunaDateTimePicker" || Component.GetType().Name == "Guna2DateTimePicker") {
                     if (string.IsNullOrWhiteSpace(Component.Text)) {
                         return string.Empty;
                     }
@@ -36,7 +36,7 @@ namespace WinFormValidation {
                         return Component.Text;
                     }
                 }
-                else if (Component.GetType().Name == "CheckBox") {
+                else if (Component.GetType().Name == "CheckBox" || Component.GetType().Name == "GunaCheckBox" || Component.GetType().Name == "Guna2CheckBox") {
                     return Convert.ToString(Component.Checked);
                 }
                 else {
