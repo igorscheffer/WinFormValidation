@@ -36,7 +36,7 @@ namespace Exemple {
                 validation.AddRule(textDifferent2, "Different (No Repeat)", "different:textDifferent");
 
                 validation.AddRule(textRequiredIf, "RequiredIf", "");
-                validation.AddRule(textRequiredIf2, "RequiredIf", "required_if:textRequiredIf");
+                validation.AddRule(textRequiredIf2, "RequiredIf", "required_if:textRequiredIf,teste1,teste2");
 
                 validation.Validate();
 

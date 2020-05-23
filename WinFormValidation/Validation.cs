@@ -54,7 +54,7 @@ namespace WinFormValidation {
 
         private void ValidateMinLength(Rules Rules, string Rule, string RuleValue) {
             if (!Rules.Optional) {
-                if (Rules.Value.Length < Convert.ToInt16(RuleValue)) {
+                if (Rules.Value.Length <= Convert.ToInt16(RuleValue)) {
                     Errors.Add(new Errors { Rules = Rules, Rule = Rule, RuleValue = RuleValue });
                 }
                 else {
@@ -64,7 +64,7 @@ namespace WinFormValidation {
         }
 
         private void ValidateMaxLength(Rules Rules, string Rule, string RuleValue) {
-            if (Rules.Value.Length > Convert.ToInt16(RuleValue)) {
+            if (Rules.Value.Length >= Convert.ToInt16(RuleValue)) {
                 Errors.Add(new Errors { Rules = Rules, Rule = Rule, RuleValue = RuleValue });
             }
             else {
