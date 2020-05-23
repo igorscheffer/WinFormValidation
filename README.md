@@ -41,6 +41,7 @@ private void OnClickCadastrar(object sender, EventArgs e){
   	catch(Exception ex){
     		MessageBox.Show(ex.Message);
   	}
+}
 ...
 ```
 ## Regras Disponíveis.
