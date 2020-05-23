@@ -25,7 +25,7 @@ private void OnClickCadastrar(object sender, EventArgs e){
   try{
       Validation validation = new Validation(this, ErrorProvider);
 
-      validation.AddRule(textBoxNome, "Required", "required|max_length:30");
+      validation.AddRule(textBoxNome, "Nome Completo", "required|max_length:40");
       validation.AddRule(textBoxEmail, "E-Mail", "required|email");
       validation.AddRule(textBoxTelefone, "Telefone", "required|telefone");
       validation.AddRule(TimePickerNascimento, "Data de Nascimento", "required|date:dd/MM/yyyy");
