@@ -22,25 +22,25 @@ using WinFormValidation;
 ...
 
 private void OnClickCadastrar(object sender, EventArgs e){
-  try{
-      Validation validation = new Validation(this, ErrorProvider);
+ 	 try{
+      		Validation validation = new Validation(this, ErrorProvider);
 
-      validation.AddRule(textBoxNome, "Nome Completo", "required|max_length:40");
-      validation.AddRule(textBoxEmail, "E-Mail", "required|email");
-      validation.AddRule(textBoxTelefone, "Telefone", "required|telefone");
-      validation.AddRule(TimePickerNascimento, "Data de Nascimento", "required|date:dd/MM/yyyy");
-      validation.Validate();
+      		validation.AddRule(textBoxNome, "Nome Completo", "required|max_length:40");
+      		validation.AddRule(textBoxEmail, "E-Mail", "required|email");
+		validation.AddRule(textBoxTelefone, "Telefone", "required|telefone");
+      		validation.AddRule(TimePickerNascimento, "Data de Nascimento", "required|date:dd/MM/yyyy");
+      		validation.Validate();
 
-      if (validation.IsValid()) {
-          MessageBox.Show("Validado com Sucesso.");
-    }
-      else {
-          validation.ErrorProviderShow();
-      }
-  }
-  catch(Exception ex){
-    MessageBox.Show(ex.Message);
-  }
+      		if (validation.IsValid()) {
+			MessageBox.Show("Validado com Sucesso.");
+  		}
+		else {
+			validation.ErrorProviderShow();
+		}
+	}
+  	catch(Exception ex){
+    		MessageBox.Show(ex.Message);
+  	}
 ...
 ```
 ## Regras Disponíveis.
@@ -103,6 +103,26 @@ O campo sob esta regra, deve ser igual a um dos valores fornecidos.
 <details><summary><strong>date</strong>:formato</summary>
 O campo sob esta regra, deve ser um formato de data válido.
 </details>
+
+## Formato de Mensagem de erro
+Você pode optar por exibir as mensagens de erros de 3 formas. Usando `ErrorMessageBoxShow`, `ErrorProviderShow`, `ErrorMessageLineShow`.
+```
+	...
+		if (validation.IsValid()) {
+			...
+  		}
+		else {
+			// Exibe uma MessageBox com as mensagens de erro.
+			validation.ErrorMessageBoxShow();
+			
+			// Exibe um icone com a mensagem de cada componente.
+			validation.ErrorProviderShow();
+
+			// Exibe uma labael com a mensagem de cada componente.
+			validation.ErrorMessageLineShow();
+		}
+	...
+```
 
 ## Selecionar Linguagem
 Você pode selecionar a linguagem das mensagens de erro usando o `Language` antes da validação (Padrão "PT_BR").
