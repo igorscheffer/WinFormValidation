@@ -6,7 +6,8 @@ namespace WinFormValidation.Languages {
             { "required",       "{name} deve ser preenchido." },
             { "match",          "{name} deve combinar com o campo {ruleValue}" },
             { "different",      "{name} deve ter um valor diferente do campo {ruleValue}" },
-            { "numeric",        "{name} deve ser definido para um número" },
+            { "numeric",        "{name} deve ser  número" },
+            { "integer",        "{name} deve ser inteiro." },
             { "checked",        "{name} deve ser marcado" },
             { "unchecked",      "{name} deve ser não deve ser marcado" },
             { "email",          "{name} deve ser um E-Mail válido" },
@@ -20,6 +21,8 @@ namespace WinFormValidation.Languages {
             { "min_length",     "{name} deve ser pelo menos {ruleValue} caracteres" },
             { "max_length",     "{name} não pode ser mais longo do que {ruleValue} caracteres" },
             { "exact_length",   "{name} deve ser exatamente {ruleValue} caracteres" },
+            { "min_value",      "{name} deve ser um valor maior ou igual a {ruleValue}" },
+            { "max_value",      "{name} deve ser um valor menor ou igual a {ruleValue}" },
             { "regex",          "{name} não está formatado corretamente" },
             { "in",             "{name} deve ter exatamente {ruleValue}" },
             { "date",           "{name} deve ser uma data válida" }

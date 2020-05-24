@@ -13,18 +13,25 @@ namespace Exemple {
         }
 
         private void OnClickTest(object sender, EventArgs e) {
+            // ==== Only Demonstration ====
+                Button button = (Button)sender;
+            // ============================
+
             try {
                 Validation validation = new Validation(this, ErrorProvider);
                 
                 validation.AddRule(textRequired, "Required", "required");
+                validation.AddRule(textInteger, "Numeric", "integer");
                 validation.AddRule(textNumeric, "Numeric", "numeric");
                 validation.AddRule(textEmail, "Email", "email");
                 validation.AddRule(cbkChecked, "Checked", "checked");
                 validation.AddRule(cbkUnChecked, "UnCkecked", "unchecked");
 
-                validation.AddRule(textMinLength, "Min", "min_length:4");
-                validation.AddRule(textMaxLength, "Max", "max_length:4");
+                validation.AddRule(textMinLength, "Min Length", "min_length:4");
+                validation.AddRule(textMaxLength, "Max Length", "max_length:4");
                 validation.AddRule(textExactLength, "Exact", "exact_length:5");
+                validation.AddRule(textMinValue, "Min Value", "min_value:4");
+                validation.AddRule(textMaxValue, "Max Value", "max_value:10");
                 //validation.AddRule(textRequired, "Regex", @"regex:");
                 validation.AddRule(textIn, "In", "in:any amount, test");
                 validation.AddRule(textDate, "Date", "date:dd/MM/yyyy");
@@ -44,8 +51,11 @@ namespace Exemple {
                     MessageBox.Show("Validado com Sucesso.");
                 }
                 else {
-                    validation.ErrorProviderShow();
-                    validation.ErrorMessageLineShow();
+                    switch (button.Tag) {
+                        case "ErrorMessageBoxShow": validation.ErrorMessageBoxShow(); break;
+                        case "ErrorProviderShow": validation.ErrorProviderShow(); break;
+                        case "ErrorMessageLineShow": validation.ErrorMessageLineShow(); break;
+                    }
                 }
             }
             catch (Exception ex) {

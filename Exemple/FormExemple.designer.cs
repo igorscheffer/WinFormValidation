@@ -56,6 +56,14 @@
             this.textRequired = new System.Windows.Forms.TextBox();
             this.cbkChecked = new System.Windows.Forms.CheckBox();
             this.cbkUnChecked = new System.Windows.Forms.CheckBox();
+            this.lblInteger = new System.Windows.Forms.Label();
+            this.textInteger = new System.Windows.Forms.TextBox();
+            this.lblMaxValue = new System.Windows.Forms.Label();
+            this.textMaxValue = new System.Windows.Forms.TextBox();
+            this.lblMinValue = new System.Windows.Forms.Label();
+            this.textMinValue = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblRequiredIf2
@@ -170,7 +178,7 @@
             // lblDate
             // 
             this.lblDate.AutoSize = true;
-            this.lblDate.Location = new System.Drawing.Point(202, 308);
+            this.lblDate.Location = new System.Drawing.Point(202, 426);
             this.lblDate.Margin = new System.Windows.Forms.Padding(10, 20, 10, 0);
             this.lblDate.Name = "lblDate";
             this.lblDate.Size = new System.Drawing.Size(30, 13);
@@ -179,7 +187,7 @@
             // 
             // textDate
             // 
-            this.textDate.Location = new System.Drawing.Point(202, 324);
+            this.textDate.Location = new System.Drawing.Point(202, 442);
             this.textDate.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
             this.textDate.Name = "textDate";
             this.textDate.Size = new System.Drawing.Size(166, 20);
@@ -188,7 +196,7 @@
             // lblIn
             // 
             this.lblIn.AutoSize = true;
-            this.lblIn.Location = new System.Drawing.Point(202, 249);
+            this.lblIn.Location = new System.Drawing.Point(202, 367);
             this.lblIn.Margin = new System.Windows.Forms.Padding(10, 20, 10, 0);
             this.lblIn.Name = "lblIn";
             this.lblIn.Size = new System.Drawing.Size(16, 13);
@@ -197,7 +205,7 @@
             // 
             // textIn
             // 
-            this.textIn.Location = new System.Drawing.Point(202, 265);
+            this.textIn.Location = new System.Drawing.Point(202, 383);
             this.textIn.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
             this.textIn.Name = "textIn";
             this.textIn.Size = new System.Drawing.Size(166, 20);
@@ -206,7 +214,7 @@
             // lblRegex
             // 
             this.lblRegex.AutoSize = true;
-            this.lblRegex.Location = new System.Drawing.Point(202, 190);
+            this.lblRegex.Location = new System.Drawing.Point(202, 308);
             this.lblRegex.Margin = new System.Windows.Forms.Padding(10, 20, 10, 0);
             this.lblRegex.Name = "lblRegex";
             this.lblRegex.Size = new System.Drawing.Size(38, 13);
@@ -215,7 +223,7 @@
             // 
             // textRegex
             // 
-            this.textRegex.Location = new System.Drawing.Point(202, 206);
+            this.textRegex.Location = new System.Drawing.Point(202, 324);
             this.textRegex.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
             this.textRegex.Name = "textRegex";
             this.textRegex.Size = new System.Drawing.Size(166, 20);
@@ -278,7 +286,7 @@
             // lblEmail
             // 
             this.lblEmail.AutoSize = true;
-            this.lblEmail.Location = new System.Drawing.Point(16, 131);
+            this.lblEmail.Location = new System.Drawing.Point(16, 190);
             this.lblEmail.Margin = new System.Windows.Forms.Padding(10, 20, 10, 0);
             this.lblEmail.Name = "lblEmail";
             this.lblEmail.Size = new System.Drawing.Size(32, 13);
@@ -287,7 +295,7 @@
             // 
             // textEmail
             // 
-            this.textEmail.Location = new System.Drawing.Point(16, 147);
+            this.textEmail.Location = new System.Drawing.Point(16, 206);
             this.textEmail.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
             this.textEmail.Name = "textEmail";
             this.textEmail.Size = new System.Drawing.Size(166, 20);
@@ -296,7 +304,7 @@
             // lblNumeric
             // 
             this.lblNumeric.AutoSize = true;
-            this.lblNumeric.Location = new System.Drawing.Point(16, 72);
+            this.lblNumeric.Location = new System.Drawing.Point(16, 131);
             this.lblNumeric.Margin = new System.Windows.Forms.Padding(10, 20, 10, 0);
             this.lblNumeric.Name = "lblNumeric";
             this.lblNumeric.Size = new System.Drawing.Size(46, 13);
@@ -305,7 +313,7 @@
             // 
             // textNumeric
             // 
-            this.textNumeric.Location = new System.Drawing.Point(16, 88);
+            this.textNumeric.Location = new System.Drawing.Point(16, 147);
             this.textNumeric.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
             this.textNumeric.Name = "textNumeric";
             this.textNumeric.Size = new System.Drawing.Size(166, 20);
@@ -323,11 +331,12 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(713, 349);
+            this.button1.Location = new System.Drawing.Point(652, 459);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(136, 23);
             this.button1.TabIndex = 38;
-            this.button1.Text = "Test";
+            this.button1.Tag = "ErrorMessageLineShow";
+            this.button1.Text = "ErrorMessageLineShow";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.OnClickTest);
             // 
@@ -341,7 +350,7 @@
             // 
             // cbkChecked
             // 
-            this.cbkChecked.Location = new System.Drawing.Point(16, 190);
+            this.cbkChecked.Location = new System.Drawing.Point(16, 249);
             this.cbkChecked.Margin = new System.Windows.Forms.Padding(10, 20, 10, 3);
             this.cbkChecked.Name = "cbkChecked";
             this.cbkChecked.Size = new System.Drawing.Size(166, 17);
@@ -351,7 +360,7 @@
             // 
             // cbkUnChecked
             // 
-            this.cbkUnChecked.Location = new System.Drawing.Point(16, 230);
+            this.cbkUnChecked.Location = new System.Drawing.Point(16, 289);
             this.cbkUnChecked.Margin = new System.Windows.Forms.Padding(10, 20, 10, 3);
             this.cbkUnChecked.Name = "cbkUnChecked";
             this.cbkUnChecked.Size = new System.Drawing.Size(166, 17);
@@ -359,12 +368,96 @@
             this.cbkUnChecked.Text = "UnChecked";
             this.cbkUnChecked.UseVisualStyleBackColor = true;
             // 
+            // lblInteger
+            // 
+            this.lblInteger.AutoSize = true;
+            this.lblInteger.Location = new System.Drawing.Point(16, 72);
+            this.lblInteger.Margin = new System.Windows.Forms.Padding(10, 20, 10, 0);
+            this.lblInteger.Name = "lblInteger";
+            this.lblInteger.Size = new System.Drawing.Size(40, 13);
+            this.lblInteger.TabIndex = 71;
+            this.lblInteger.Text = "Integer";
+            // 
+            // textInteger
+            // 
+            this.textInteger.Location = new System.Drawing.Point(16, 88);
+            this.textInteger.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
+            this.textInteger.Name = "textInteger";
+            this.textInteger.Size = new System.Drawing.Size(166, 20);
+            this.textInteger.TabIndex = 70;
+            // 
+            // lblMaxValue
+            // 
+            this.lblMaxValue.AutoSize = true;
+            this.lblMaxValue.Location = new System.Drawing.Point(202, 249);
+            this.lblMaxValue.Margin = new System.Windows.Forms.Padding(10, 20, 10, 0);
+            this.lblMaxValue.Name = "lblMaxValue";
+            this.lblMaxValue.Size = new System.Drawing.Size(57, 13);
+            this.lblMaxValue.TabIndex = 75;
+            this.lblMaxValue.Text = "Max Value";
+            // 
+            // textMaxValue
+            // 
+            this.textMaxValue.Location = new System.Drawing.Point(202, 265);
+            this.textMaxValue.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
+            this.textMaxValue.Name = "textMaxValue";
+            this.textMaxValue.Size = new System.Drawing.Size(166, 20);
+            this.textMaxValue.TabIndex = 74;
+            // 
+            // lblMinValue
+            // 
+            this.lblMinValue.AutoSize = true;
+            this.lblMinValue.Location = new System.Drawing.Point(202, 190);
+            this.lblMinValue.Margin = new System.Windows.Forms.Padding(10, 20, 10, 0);
+            this.lblMinValue.Name = "lblMinValue";
+            this.lblMinValue.Size = new System.Drawing.Size(54, 13);
+            this.lblMinValue.TabIndex = 73;
+            this.lblMinValue.Text = "Min Value";
+            // 
+            // textMinValue
+            // 
+            this.textMinValue.Location = new System.Drawing.Point(202, 206);
+            this.textMinValue.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
+            this.textMinValue.Name = "textMinValue";
+            this.textMinValue.Size = new System.Drawing.Size(166, 20);
+            this.textMinValue.TabIndex = 72;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(652, 430);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(136, 23);
+            this.button2.TabIndex = 76;
+            this.button2.Tag = "ErrorProviderShow";
+            this.button2.Text = "ErrorProviderShow";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.OnClickTest);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(652, 401);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(136, 23);
+            this.button3.TabIndex = 76;
+            this.button3.Tag = "ErrorMessageBoxShow";
+            this.button3.Text = "ErrorMessageBoxShow";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.OnClickTest);
+            // 
             // FormExemple
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(800, 384);
+            this.ClientSize = new System.Drawing.Size(800, 494);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.lblMaxValue);
+            this.Controls.Add(this.textMaxValue);
+            this.Controls.Add(this.lblMinValue);
+            this.Controls.Add(this.textMinValue);
+            this.Controls.Add(this.lblInteger);
+            this.Controls.Add(this.textInteger);
             this.Controls.Add(this.cbkUnChecked);
             this.Controls.Add(this.cbkChecked);
             this.Controls.Add(this.lblRequiredIf2);
@@ -440,6 +533,14 @@
         private System.Windows.Forms.TextBox textRequired;
         private System.Windows.Forms.CheckBox cbkChecked;
         private System.Windows.Forms.CheckBox cbkUnChecked;
+        private System.Windows.Forms.Label lblInteger;
+        private System.Windows.Forms.TextBox textInteger;
+        private System.Windows.Forms.Label lblMaxValue;
+        private System.Windows.Forms.TextBox textMaxValue;
+        private System.Windows.Forms.Label lblMinValue;
+        private System.Windows.Forms.TextBox textMinValue;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
     }
 }
 

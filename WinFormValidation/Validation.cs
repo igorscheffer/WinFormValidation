@@ -54,31 +54,57 @@ namespace WinFormValidation {
 
         private void ValidateMinLength(Rules Rules, string Rule, string RuleValue) {
             if (!Rules.Optional) {
-                if (Rules.Value.Length <= Convert.ToInt16(RuleValue)) {
-                    Errors.Add(new Errors { Rules = Rules, Rule = Rule, RuleValue = RuleValue });
+                if (Rules.Value.Length >= Convert.ToInt16(RuleValue)) {
+                    Valid.Add(new Valid { Rules = Rules, Rule = Rule, RuleValue = RuleValue });
                 }
                 else {
-                    Valid.Add(new Valid { Rules = Rules, Rule = Rule, RuleValue = RuleValue });
+                    Errors.Add(new Errors { Rules = Rules, Rule = Rule, RuleValue = RuleValue });
                 }
             }
         }
 
         private void ValidateMaxLength(Rules Rules, string Rule, string RuleValue) {
-            if (Rules.Value.Length >= Convert.ToInt16(RuleValue)) {
-                Errors.Add(new Errors { Rules = Rules, Rule = Rule, RuleValue = RuleValue });
+            if (Rules.Value.Length <= Convert.ToInt16(RuleValue)) {
+                Valid.Add(new Valid { Rules = Rules, Rule = Rule, RuleValue = RuleValue });
             }
             else {
-                Valid.Add(new Valid { Rules = Rules, Rule = Rule, RuleValue = RuleValue });
+                Errors.Add(new Errors { Rules = Rules, Rule = Rule, RuleValue = RuleValue });
             }
         }
 
         private void ValidateExactLength(Rules Rules, string Rule, string RuleValue) {
             if (!Rules.Optional) {
-                if (Rules.Value.Length != Convert.ToInt16(RuleValue)) {
-                    Errors.Add(new Errors { Rules = Rules, Rule = Rule, RuleValue = RuleValue });
+                if (Rules.Value.Length == Convert.ToInt16(RuleValue)) {
+                    Valid.Add(new Valid { Rules = Rules, Rule = Rule, RuleValue = RuleValue });
                 }
                 else {
+                    Errors.Add(new Errors { Rules = Rules, Rule = Rule, RuleValue = RuleValue });
+                }
+            }
+        }
+
+        private void ValidateMinValue(Rules Rules, string Rule, string RuleValue) {
+            if (!Rules.Optional) {
+                int Value = 0;
+                bool MatchValue = int.TryParse(Rules.Value, out Value);
+                if (Value >= Convert.ToInt32(RuleValue)) {
                     Valid.Add(new Valid { Rules = Rules, Rule = Rule, RuleValue = RuleValue });
+                }
+                else {
+                    Errors.Add(new Errors { Rules = Rules, Rule = Rule, RuleValue = RuleValue });
+                }
+            }
+        }
+
+        private void ValidateMaxValue(Rules Rules, string Rule, string RuleValue) {
+            if (!Rules.Optional) {
+                int Value = 0;
+                bool MatchValue = int.TryParse(Rules.Value, out Value);
+                if (Value <= Convert.ToInt32(RuleValue)) {
+                    Valid.Add(new Valid { Rules = Rules, Rule = Rule, RuleValue = RuleValue });
+                }
+                else {
+                    Errors.Add(new Errors { Rules = Rules, Rule = Rule, RuleValue = RuleValue });
                 }
             }
         }
@@ -88,11 +114,11 @@ namespace WinFormValidation {
                 var regexp = RuleValue;
                 var match = Regex.Match(RuleValue, regexp, RegexOptions.IgnoreCase);
 
-                if (!match.Success) {
-                    Errors.Add(new Errors { Rules = Rules, Rule = Rule, RuleValue = RuleValue });
+                if (match.Success) {
+                    Valid.Add(new Valid { Rules = Rules, Rule = Rule, RuleValue = RuleValue });
                 }
                 else {
-                    Valid.Add(new Valid { Rules = Rules, Rule = Rule, RuleValue = RuleValue });
+                    Errors.Add(new Errors { Rules = Rules, Rule = Rule, RuleValue = RuleValue });
                 }
             }
         }
@@ -101,11 +127,11 @@ namespace WinFormValidation {
             if (!Rules.Optional) {
                 string[] inRules = RuleValue.Split(',');
 
-                if (!Array.Exists(inRules, find => find.ToLower() == Rules.Value.ToLower())) {
-                    Errors.Add(new Errors { Rules = Rules, Rule = Rule, RuleValue = RuleValue });
+                if (Array.Exists(inRules, find => find.ToLower() == Rules.Value.ToLower())) {
+                    Valid.Add(new Valid { Rules = Rules, Rule = Rule, RuleValue = RuleValue });
                 }
                 else {
-                    Valid.Add(new Valid { Rules = Rules, Rule = Rule, RuleValue = RuleValue });
+                    Errors.Add(new Errors { Rules = Rules, Rule = Rule, RuleValue = RuleValue });
                 }
             }
         }
@@ -116,21 +142,21 @@ namespace WinFormValidation {
 
                 bool validate = DateTime.TryParseExact(Rules.Value, RuleValue, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out date);
 
-                if (!validate) {
-                    Errors.Add(new Errors { Rules = Rules, Rule = Rule, RuleValue = RuleValue });
+                if (validate) {
+                    Valid.Add(new Valid { Rules = Rules, Rule = Rule, RuleValue = RuleValue });
                 }
                 else {
-                    Valid.Add(new Valid { Rules = Rules, Rule = Rule, RuleValue = RuleValue });
+                    Errors.Add(new Errors { Rules = Rules, Rule = Rule, RuleValue = RuleValue });
                 }
             }
         }
 
         private void ValidateRequired(Rules Rules, string Rule) {
-            if (string.IsNullOrWhiteSpace(Rules.Value)) {
-                Errors.Add(new Errors { Rules = Rules, Rule = Rule });
+            if (!string.IsNullOrWhiteSpace(Rules.Value)) {
+                Valid.Add(new Valid { Rules = Rules, Rule = Rule });
             }
             else {
-                Valid.Add(new Valid { Rules = Rules, Rule = Rule });
+                Errors.Add(new Errors { Rules = Rules, Rule = Rule });
             }
         }
 
@@ -156,22 +182,22 @@ namespace WinFormValidation {
         private void ValidateMatch(Rules Rules, string Rule, string RuleValue) {
             Rules Match = this.Rules.Find(find => find.Component.Name == RuleValue);
 
-            if (Rules.Value != Match.Value) {
-                Errors.Add(new Errors { Rules = Rules, Rule = Rule, RuleValue = Match.Name });
+            if (Rules.Value == Match.Value) {
+                Valid.Add(new Valid { Rules = Rules, Rule = Rule });
             }
             else {
-                Valid.Add(new Valid { Rules = Rules, Rule = Rule });
+                Errors.Add(new Errors { Rules = Rules, Rule = Rule, RuleValue = Match.Name });
             }
         }
 
         private void ValidateDifferent(Rules Rules, string Rule, string RuleValue) {
             Rules Different = this.Rules.Find(find => find.Component.Name == RuleValue);
 
-            if (Rules.Value == Different.Value) {
-                Errors.Add(new Errors { Rules = Rules, Rule = Rule, RuleValue = Different.Name });
+            if (Rules.Value != Different.Value) {
+                Valid.Add(new Valid { Rules = Rules, Rule = Rule });
             }
             else {
-                Valid.Add(new Valid { Rules = Rules, Rule = Rule });
+                Errors.Add(new Errors { Rules = Rules, Rule = Rule, RuleValue = Different.Name });
             }
         }
 
@@ -180,11 +206,11 @@ namespace WinFormValidation {
                 var regexp = @"^(?("")("".+?(?<!\\)""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-z][-0-9a-z]*[0-9a-z]*\.)+[a-z0-9][\-a-z0-9]{0,22}[a-z0-9]))$";
                 var match = Regex.Match(Rules.Value, regexp, RegexOptions.IgnoreCase);
 
-                if (!match.Success) {
-                    Errors.Add(new Errors { Rules = Rules, Rule = Rule });
+                if (match.Success) {
+                    Valid.Add(new Valid { Rules = Rules, Rule = Rule });
                 }
                 else {
-                    Valid.Add(new Valid { Rules = Rules, Rule = Rule });
+                    Errors.Add(new Errors { Rules = Rules, Rule = Rule });
                 }
             }
         }
@@ -192,31 +218,41 @@ namespace WinFormValidation {
         private void ValidateNumeric(Rules Rules, string Rule) {
             var regexp = @"^([0-9]*)$";
             var match = Regex.Match(Rules.Value, regexp, RegexOptions.IgnoreCase);
-
-            if (!match.Success) {
-                Errors.Add(new Errors { Rules = Rules, Rule = Rule });
+            if (match.Success) {
+                Valid.Add(new Valid { Rules = Rules, Rule = Rule });
             }
             else {
+                Errors.Add(new Errors { Rules = Rules, Rule = Rule });
+            }
+        }
+
+        private void ValidateInteger(Rules Rules, string Rule) {
+            int Val = 0;
+            bool match = int.TryParse(Rules.Value, out Val);
+            if (match) {
                 Valid.Add(new Valid { Rules = Rules, Rule = Rule });
+            }
+            else {
+                Errors.Add(new Errors { Rules = Rules, Rule = Rule });
             }
         }
 
         private void ValidateChecked(Rules Rules, string Rule) {
-            if (Rules.Value.ToLower() != Convert.ToString(true).ToLower()) {
-                Errors.Add(new Errors { Rules = Rules, Rule = Rule });
+            if (Rules.Value.ToLower() == Convert.ToString(true).ToLower()) {
+                Valid.Add(new Valid { Rules = Rules, Rule = Rule });
             }
             else {
-                Valid.Add(new Valid { Rules = Rules, Rule = Rule });
+                Errors.Add(new Errors { Rules = Rules, Rule = Rule });
             }
         }
 
         private void ValidateUnChecked(Rules Rules, string Rule) {
             if (!Rules.Optional) {
-                if (Rules.Value.ToLower() == Convert.ToString(true).ToLower()) {
-                    Errors.Add(new Errors { Rules = Rules, Rule = Rule });
+                if (Rules.Value.ToLower() == Convert.ToString(false).ToLower()) {
+                    Valid.Add(new Valid { Rules = Rules, Rule = Rule });
                 }
                 else {
-                    Valid.Add(new Valid { Rules = Rules, Rule = Rule });
+                    Errors.Add(new Errors { Rules = Rules, Rule = Rule });
                 }
             }
         }
@@ -226,11 +262,11 @@ namespace WinFormValidation {
                 var regexp = @"^(\d{3})([\.]\d{3})([\.]\d{3})(\-\d{2})$";
                 var match = Regex.Match(Rules.Value, regexp, RegexOptions.IgnoreCase);
 
-                if (!match.Success) {
-                    Errors.Add(new Errors { Rules = Rules, Rule = Rule });
+                if (match.Success) {
+                    Valid.Add(new Valid { Rules = Rules, Rule = Rule });
                 }
                 else {
-                    Valid.Add(new Valid { Rules = Rules, Rule = Rule });
+                    Errors.Add(new Errors { Rules = Rules, Rule = Rule });
                 }
             }
         }
@@ -240,11 +276,11 @@ namespace WinFormValidation {
                 var regexp = @"^(\d{2})([\.]\d{3}){2}(\/\d{4})(\-\d{2})$";
                 var match = Regex.Match(Rules.Value, regexp, RegexOptions.IgnoreCase);
 
-                if (!match.Success) {
-                    Errors.Add(new Errors { Rules = Rules, Rule = Rule });
+                if (match.Success) {
+                    Valid.Add(new Valid { Rules = Rules, Rule = Rule });
                 }
                 else {
-                    Valid.Add(new Valid { Rules = Rules, Rule = Rule });
+                    Errors.Add(new Errors { Rules = Rules, Rule = Rule });
                 }
             }
         }
@@ -254,11 +290,11 @@ namespace WinFormValidation {
                 var regexp = @"\(\d{2,}\) \d{4,}\-\d{4}$";
                 var match = Regex.Match(Rules.Value.Trim(), regexp, RegexOptions.IgnoreCase);
 
-                if (!match.Success) {
-                    Errors.Add(new Errors { Rules = Rules, Rule = Rule });
+                if (match.Success) {
+                    Valid.Add(new Valid { Rules = Rules, Rule = Rule });
                 }
                 else {
-                    Valid.Add(new Valid { Rules = Rules, Rule = Rule });
+                    Errors.Add(new Errors { Rules = Rules, Rule = Rule });
                 }
             }
         }
@@ -268,11 +304,11 @@ namespace WinFormValidation {
                 var regexp = @"^(\d{0,3}([\.]\d{3}){2})$";
                 var match = Regex.Match(Rules.Value, regexp, RegexOptions.IgnoreCase);
 
-                if (!match.Success) {
-                    Errors.Add(new Errors { Rules = Rules, Rule = Rule });
+                if (match.Success) {
+                    Valid.Add(new Valid { Rules = Rules, Rule = Rule });
                 }
                 else {
-                    Valid.Add(new Valid { Rules = Rules, Rule = Rule });
+                    Errors.Add(new Errors { Rules = Rules, Rule = Rule });
                 }
             }
         }
@@ -282,25 +318,25 @@ namespace WinFormValidation {
                 var regexp = @"^(\d{1,3}(\.\d{3})*)(\,\d{2})$";
                 var match = Regex.Match(Rules.Value, regexp, RegexOptions.IgnoreCase);
 
-                if (!match.Success) {
-                    Errors.Add(new Errors { Rules = Rules, Rule = Rule });
+                if (match.Success) {
+                    Valid.Add(new Valid { Rules = Rules, Rule = Rule });
                 }
                 else {
-                    Valid.Add(new Valid { Rules = Rules, Rule = Rule });
+                    Errors.Add(new Errors { Rules = Rules, Rule = Rule });
                 }
             }
         }
-
+        /*
         private void ValidateQuantidade(Rules Rules, string Rule) {
             if (!Rules.Optional) {
                 var regexp = @"^\d+(\,\d{2})$";
                 var match = Regex.Match(Rules.Value, regexp, RegexOptions.IgnoreCase);
 
-                if (!match.Success) {
-                    Errors.Add(new Errors { Rules = Rules, Rule = Rule });
+                if (match.Success) {
+                    Valid.Add(new Valid { Rules = Rules, Rule = Rule });
                 }
                 else {
-                    Valid.Add(new Valid { Rules = Rules, Rule = Rule });
+                    Errors.Add(new Errors { Rules = Rules, Rule = Rule });
                 }
             }
         }
@@ -310,25 +346,25 @@ namespace WinFormValidation {
                 var regexp = @"^\d+(\.\d{3})$";
                 var match = Regex.Match(Rules.Value, regexp, RegexOptions.IgnoreCase);
 
-                if (!match.Success) {
-                    Errors.Add(new Errors { Rules = Rules, Rule = Rule });
+                if (match.Success) {
+                    Valid.Add(new Valid { Rules = Rules, Rule = Rule });
                 }
                 else {
-                    Valid.Add(new Valid { Rules = Rules, Rule = Rule });
+                    Errors.Add(new Errors { Rules = Rules, Rule = Rule });
                 }
             }
         }
-
+        */
         private void ValidateCEP(Rules Rules, string Rule) {
             if (!Rules.Optional) {
                 var regexp = @"^(\d{5})(\-\d{3})$";
                 var match = Regex.Match(Rules.Value, regexp, RegexOptions.IgnoreCase);
 
-                if (!match.Success) {
-                    Errors.Add(new Errors { Rules = Rules, Rule = Rule });
+                if (match.Success) {
+                    Valid.Add(new Valid { Rules = Rules, Rule = Rule });
                 }
                 else {
-                    Valid.Add(new Valid { Rules = Rules, Rule = Rule });
+                    Errors.Add(new Errors { Rules = Rules, Rule = Rule });
                 }
             }
         }
@@ -338,11 +374,11 @@ namespace WinFormValidation {
                 var regexp = @"^([A-Z]{3})(\-\d\w\d{2})$";
                 var match = Regex.Match(Rules.Value, regexp, RegexOptions.IgnoreCase);
 
-                if (!match.Success) {
-                    Errors.Add(new Errors { Rules = Rules, Rule = Rule });
+                if (match.Success) {
+                    Valid.Add(new Valid { Rules = Rules, Rule = Rule });
                 }
                 else {
-                    Valid.Add(new Valid { Rules = Rules, Rule = Rule });
+                    Errors.Add(new Errors { Rules = Rules, Rule = Rule });
                 }
             }
         }
@@ -363,6 +399,8 @@ namespace WinFormValidation {
                             case "different": ValidateDifferent(Rule, sub_split_rules[0], sub_split_rules[1]); break;
                             case "min_length": ValidateMinLength(Rule, sub_split_rules[0], sub_split_rules[1]); break;
                             case "max_length": ValidateMaxLength(Rule, sub_split_rules[0], sub_split_rules[1]); break;
+                            case "min_value": ValidateMinValue(Rule, sub_split_rules[0], sub_split_rules[1]); break;
+                            case "max_value": ValidateMaxValue(Rule, sub_split_rules[0], sub_split_rules[1]); break;
                             case "exact_length": ValidateExactLength(Rule, sub_split_rules[0], sub_split_rules[1]); break;
                             case "regexp": ValidateRegExp(Rule, sub_split_rules[0], sub_split_rules[1]); break;
                             case "in": ValidateIn(Rule, sub_split_rules[0], sub_split_rules[1]); break;
@@ -381,8 +419,8 @@ namespace WinFormValidation {
                             case "telefone": ValidateTelefone(Rule, split_rule); break;
                             case "nfe": ValidateNFE(Rule, split_rule); break;
                             case "reais": ValidateReais(Rule, split_rule); break;
-                            case "quantidade": ValidateQuantidade(Rule, split_rule); break;
-                            case "peso": ValidatePeso(Rule, split_rule); break;
+                            //case "quantidade": ValidateQuantidade(Rule, split_rule); break;
+                            //case "peso": ValidatePeso(Rule, split_rule); break;
                             case "cep": ValidateCEP(Rule, split_rule); break;
                             case "placa": ValidatePlaca(Rule, split_rule); break;
                         }
@@ -395,7 +433,6 @@ namespace WinFormValidation {
             if (ValidateForm != null) {
                 Errors error = Errors.First<Errors>();
                 Control Component = ValidateForm.Controls.Find(error.Rules.Component.Name, true)[0];
-                Console.WriteLine(Component.Name);
                 Component.Focus();
             }
         }
@@ -514,12 +551,17 @@ namespace WinFormValidation {
         /// <summary>
         /// Exibe uma MessageBox com os Campos não validos e erros
         /// </summary>
-        public void ErrorMessageBoxShow() {
-            string ShowMessage = "\n";
+        /// <param name="Title">Titulo da MessageBox</param>
+        public void ErrorMessageBoxShow(string Title = "Oooops...") {
+            string ShowMessage = "";
+            Errors Last = GetErrors().Last();
 
             foreach (Errors Erro in GetErrors()) {
-                ShowMessage += Erro.Message + "\n\n";
+                ShowMessage += Erro.Message + "\n";
+                if (!Erro.Equals(Last)) ShowMessage += "\n";
             }
+
+            MessageBox.Show(ShowMessage, Title);
         }
         #endregion
 
