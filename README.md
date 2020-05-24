@@ -49,72 +49,107 @@ private void OnClickCadastrar(object sender, EventArgs e){
 > Clique para mostrar detalhes.
 
 <details><summary><strong>required</strong></summary>
+	
 O componente sob está regra, deve estar presente e não 'vazio'.
+
 </details>
 
 <details><summary><strong>required_if</strong>:outro_componente,valor_1,valor_2,...</summary>
+	
 O componente sob esta regra, deve estar presente e não estar vazio se o campo outro componente for igual a qualquer valor.
 Por exemplo `required_if:outro_component,1,sim,ativo` será necessário se o valor de `outro_campo` for `1`, `'1'`, `'sim'`, ou `'ativo'`.
+
 </details>
 
 <details><summary><strong>integer</strong></summary>
+
 O componente sob esta regra, deve ser inteiro.
+
 </details>
 
 <details><summary><strong>numeric</strong></summary>
+
 O componente sob esta regra, deve ser numérico.
+
 </details>
 
 <details><summary><strong>checked</strong></summary>
+
 O componente sob esta regra, deve estar selecionado.
+
 </details>
 
 <details><summary><strong>unchecked</strong></summary>
-O componente sob esta regra, não deve estar selecionado selecionado.
+
+O componente sob esta regra, não deve estar selecionado.
+
 </details>
 
 <details><summary><strong>email</strong></summary>
+
 O componente sob esta regra, deve ter um endereço de e-mail valido.
+
 </details>
 
 <details><summary><strong>match</strong>:outro_componente</summary>
+
 O componente sob esta regra, deve estar presente e ter o valor igual ao outro campo selecionado.
+
 </details>
 
 <details><summary><strong>different</strong>:outro_componente</summary>
+
 O componente sob esta regra, deve estar presente e não ter o valor igual ao outro campo selecionado.
+
 </details>
 
 <details><summary><strong>min_length</strong>:número</summary>
+
 O componente sob esta regra, deve ter um tamanho maior ou igual ao número fornecido.
+
 </details>
 
 <details><summary><strong>min_length</strong>:número</summary>
+
 O componente sob esta regra, deve ter um tamanho menor ou igual ao número fornecido.
+
 </details>
 
 <details><summary><strong>min_value</strong>:número</summary>
+
 O componente sob esta regra, deve ter um valor maior ou igual ao número fornecido.
+
 </details>
 
 <details><summary><strong>max_value</strong>:número</summary>
+
 O componente sob esta regra, deve ter um valor menor ou igual ao número fornecido.
+
 </details>
 
 <details><summary><strong>exact_length</strong>:número</summary>
+
 O componente sob esta regra, deve ter um tamanho igual ao número fornecido.
+
 </details>
 
 <details><summary><strong>regexp</strong>:sua_expressao_regular</summary>
-O campo sob esta regra, deve corresponder a expressão regular especificada.
+
+O componente sob esta regra, deve corresponder a expressão regular especificada.
+
 </details>
 
 <details><summary><strong>in</strong>:valor_1,valor_2...</summary>
-O campo sob esta regra, deve ser igual a um dos valores fornecidos.
+
+O componente sob esta regra, deve ser igual a um dos valores fornecidos.
+
 </details>
 
 <details><summary><strong>date</strong>:formato</summary>
-O campo sob esta regra, deve ser um formato de data válido.
+
+O componente sob esta regra, deve ser um formato de data válido.
+Por exemplo `date:dd/MM/yyyy`.
+
 </details>
 
 ## Formato de Mensagem de erro
