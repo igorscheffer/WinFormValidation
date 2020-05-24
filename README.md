@@ -32,7 +32,7 @@ private void OnClickCadastrar(object sender, EventArgs e){
       		validation.Validate();
 
       		if (validation.IsValid()) {
-			MessageBox.Show("Validado com Sucesso.");
+			MessageBox.Show("Todos os dados estão preenchidos corretamente.");
   		}
 		else {
 			validation.ErrorProviderShow();
