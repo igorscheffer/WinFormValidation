@@ -57,6 +57,10 @@ O componente sob esta regra, deve estar presente e não estar vazio se o campo o
 Por exemplo `required_if:outro_component,1,sim,ativo` será necessário se o valor de `outro_campo` for `1`, `'1'`, `'sim'`, ou `'ativo'`.
 </details>
 
+<details><summary><strong>integer</strong></summary>
+O componente sob esta regra, deve ser inteiro.
+</details>
+
 <details><summary><strong>numeric</strong></summary>
 O componente sob esta regra, deve ser numérico.
 </details>
@@ -87,6 +91,14 @@ O componente sob esta regra, deve ter um tamanho maior ou igual ao número forne
 
 <details><summary><strong>min_length</strong>:número</summary>
 O componente sob esta regra, deve ter um tamanho menor ou igual ao número fornecido.
+</details>
+
+<details><summary><strong>min_value</strong>:número</summary>
+O componente sob esta regra, deve ter um valor maior ou igual ao número fornecido.
+</details>
+
+<details><summary><strong>max_value</strong>:número</summary>
+O componente sob esta regra, deve ter um valor menor ou igual ao número fornecido.
 </details>
 
 <details><summary><strong>exact_length</strong>:número</summary>
