@@ -4,7 +4,7 @@ Biblioteca autônoma para validação de formulários do WinForm.
 
 ## Instalação
 
- 1. Faça o Download da DLL do WinFormValidation. [Clique aqui para fazer download](https://github.com/igorscheffer/WinFormValidation/blob/master/WinFormValidation/bin/Release/WinFormValidation.dll)
+ 1. Faça o Download da DLL do WinFormValidation. [Clique aqui para fazer download](https://raw.githubusercontent.com/igorscheffer/WinFormValidation/master/WinFormValidation/bin/Release/WinFormValidation.dll)
  2. Abra seu projeto no **Visual Studio**.
  3. Clique em **Projeto**.
  4. Clique em **Adicionar Referencias**.
