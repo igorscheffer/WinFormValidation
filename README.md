@@ -136,17 +136,26 @@ Você pode optar por exibir as mensagens de erros de 3 formas. Usando `ErrorMess
 		}
 	...
 ```
-**ErrorMessageBoxShow**
+
+> Clique para mostrar a imagem da demonstração.
+
+<details><summary><strong>ErrorMessageBoxShow</strong></summary>
 
 [![ErrorMessageBoxShow](https://github.com/igorscheffer/WinFormValidation/blob/master/Exemple/ErrorMessageBoxShow.PNG?raw=true "ErrorMessageBoxShow")](https://github.com/igorscheffer/WinFormValidation/blob/master/Exemple/ErrorMessageBoxShow.PNG?raw=true "ErrorMessageBoxShow")
 
-**ErrorMessageLineShow**
+</details>
 
+<details><summary><strong>ErrorMessageLineShow</strong></summary>
+	
 [![ErrorMessageLineShow](https://github.com/igorscheffer/WinFormValidation/blob/master/Exemple/ErrorMessageLineShow.PNG?raw=true "ErrorMessageLineShow")](https://github.com/igorscheffer/WinFormValidation/blob/master/Exemple/ErrorMessageLineShow.PNG?raw=true "ErrorMessageLineShow")
 
-**ErrorProviderShow**
+</details>
 
+<details><summary><strong>ErrorProviderShow</strong></summary>
+	
 [![ErrorProviderShow](https://github.com/igorscheffer/WinFormValidation/blob/master/Exemple/ErrorProviderShow.png?raw=true "ErrorProviderShow")](https://github.com/igorscheffer/WinFormValidation/blob/master/Exemple/ErrorProviderShow.png?raw=true "ErrorProviderShow")
+
+</details>
 
 ## Selecionar Linguagem
 Você pode selecionar a linguagem das mensagens de erro usando o `Language` antes da validação (Padrão "PT_BR").
